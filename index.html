@@ -1,127 +1,92 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Student Registration System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marmanet Secondary School</title>
     <style>
         body {
-            font-family: Arial;
-            background: #eaf0f8;
-            padding: 20px;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f7f4;
+            color: #26352b;
+        }
+
+        header {
+            background: #174b32;
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            letter-spacing: 2px;
         }
 
         .container {
-            max-width: 450px;
-            margin: auto;
-            background: white;
+            max-width: 650px;
+            margin: 35px auto;
             padding: 25px;
-            border-radius: 10px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
         }
 
-        input {
-            width: 95%;
-            padding: 12px;
-            margin: 8px 0 15px;
+        h2 {
+            color: #174b32;
+            text-align: center;
         }
 
-        button {
-            background: blue;
+        .details {
+            margin-top: 25px;
+        }
+
+        .details p {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+            font-size: 17px;
+        }
+
+        footer {
+            background: #174b32;
             color: white;
-            padding: 12px;
-            border: none;
-            cursor: pointer;
-        }
-
-        a {
-            color: blue;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
         }
     </style>
 </head>
 
 <body>
 
+<header>
+    <h1>MARMANET SECONDARY SCHOOL</h1>
+    <p>KNOWLEDGE • DISCIPLINE • SUCCESS</p>
+    <h2 style="color:white;">STUDENT INFORMATION PORTAL</h2>
+    <p>Welcome to our school information page</p>
+</header>
+
 <div class="container">
+    <h2>STUDENT DETAILS</h2>
 
-<h2>STUDENT REGISTRATION</h2>
-
-<form id="studentForm">
-
-<label>Student Name</label>
-<input id="name" required>
-
-<label>Admission Number</label>
-<input id="admission" required>
-
-<label>Name of School</label>
-<input id="school" required>
-
-<label>Class</label>
-<input id="class" required>
-
-<button type="submit">Register Student</button>
-
-</form>
-
-<div id="result"></div>
-
+    <div class="details">
+        <p><strong>Student Name:</strong> Lewis Mungai</p>
+        <p><strong>Admission Number:</strong> 30556102085</p>
+        <p><strong>School:</strong> Marmanet Secondary School</p>
+        <p><strong>Class:</strong> Form 4</p>
+    </div>
 </div>
 
-<script>
-
-document.getElementById("studentForm")
-.addEventListener("submit", function(e) {
-
-    e.preventDefault();
-
-    let student = {
-        name: document.getElementById("name").value,
-        admission: document.getElementById("admission").value,
-        school: document.getElementById("school").value,
-        studentClass: document.getElementById("class").value
-    };
-
-    localStorage.setItem(
-        "student_" + student.admission,
-        JSON.stringify(student)
-    );
-
-    let link = location.href.split("?")[0] +
-        "?student=" + encodeURIComponent(student.admission);
-
-    document.getElementById("result").innerHTML =
-        "<h3>Student Registered Successfully!</h3>" +
-        "<p>Student Link:</p>" +
-        '<a href="' + link + '" target="_blank">' +
-        link + '</a>';
-
-});
-
-let admission = new URLSearchParams(
-    location.search
-).get("student");
-
-if (admission) {
-
-    let data = localStorage.getItem("student_" + admission);
-
-    if (data) {
-
-        let student = JSON.parse(data);
-
-        document.querySelector(".container").innerHTML =
-            "<h2>STUDENT DETAILS</h2>" +
-            "<p><b>Student Name:</b> " + student.name + "</p>" +
-            "<p><b>Admission:</b> " + student.admission + "</p>" +
-            "<p><b>School:</b> " + student.school + "</p>" +
-            "<p><b>Class:</b> " + student.studentClass + "</p>";
-
-    } else {
-        document.querySelector(".container").innerHTML =
-            "Student not found.";
-    }
-}
-
-</script>
+<footer>
+    <p>Marmanet Secondary School</p>
+    <p>Committed to Excellence in Education</p>
+</footer>
 
 </body>
 </html>
